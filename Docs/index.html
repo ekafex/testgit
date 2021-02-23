@@ -1,0 +1,136 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>Earthquake Sensor &#8212; Earthquake Sensor  documentation</title>
+    <link rel="stylesheet" href="_static/nature.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <script id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/language_data.js"></script>
+    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" /> 
+  </head><body>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="nav-item nav-item-0"><a href="#">Earthquake Sensor  documentation</a> &#187;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="earthquake-sensor">
+<h1><strong>Earthquake Sensor</strong><a class="headerlink" href="#earthquake-sensor" title="Permalink to this headline">¶</a></h1>
+<div class="toctree-wrapper compound">
+</div>
+<div class="section" id="abstract">
+<h2><strong>Abstract</strong><a class="headerlink" href="#abstract" title="Permalink to this headline">¶</a></h2>
+<p>Here we describe a simple and low cost sensor that is sensitive of low amplitude ground shaking. The sensor can be utilized as a home made early warning earthquake device.</p>
+</div>
+<div class="section" id="introduction">
+<h2><strong>Introduction</strong><a class="headerlink" href="#introduction" title="Permalink to this headline">¶</a></h2>
+<p>For a liquid-air boundary, the critical angle for the total internal reflection is determined by the liquid refraction index. If the surface of the liquid is unperturbed, the reflection of light rays is the same in every point of the surface. However, if local perturbations are introduced, the reflectance of that area can changes significantly, by changing the intensity of the expected light reflected in a given direction.</p>
+<p>Small amplitude shakes of the liquid container results on ripples formation that can significantly alter the reflection properties of the liquid surface. These ripples are result of the capillary waves formed due to the surface tension of the liquid-air boundary. Therefore, by shining a laser on a given point of the liquid surface, the intensity of the reflected light is sensitive on little shakes of the container. We want to utilize this phenomenon to build a sensor for early warning of earthquakes.</p>
+</div>
+<div class="section" id="hardware">
+<h2><strong>Hardware</strong><a class="headerlink" href="#hardware" title="Permalink to this headline">¶</a></h2>
+<p>The sensor we suggest here is shown in <a class="reference internal" href="#sensor"><span class="std std-numref">Fig. 1</span></a>. It consist of a transparent container filled with water. A light beam that is emitted from a laser that inters in the water and has a direction that hits the water-air boundary at an angle greater than the critical angle <span class="math notranslate nohighlight">\((\theta &gt; \theta_c)\)</span>. As a result, the light beam is totally reflected in the water which then leaves the container and hits a photodetector – such as a photoresistor – that measures the intensity of light. The photodetector is connected with the necessary electronics that facilitate signal processing, data acquisition and decision making.</p>
+<p>If the water-air boundary is in equilibrium, the light reaching the photodetector is constant. When ripples are produced, they change the shape of the water-air boundary and therefore, the reflected light disperses by changing the intensity of light reaching the photodetector. The evolution of the ripples follow the time dependence of the external force and therefore, the time variation of the reflected light intensity follow the time evolution of the external force. The sensor measures the light intensity to reconstruct the time dependence of the external force and then to distinguish if this force originates from a major earthquake and to decide if needs to alarm the users.</p>
+<div class="figure align-center" id="id1">
+<span id="sensor"></span><a class="reference internal image-reference" href="_images/Earthquake_Sensor.png"><img alt="Sensor geometry" src="_images/Earthquake_Sensor.png" style="width: 60%;" /></a>
+<p class="caption"><span class="caption-number">Fig. 1 </span><span class="caption-text">. The earthquake sensor is composed of:
+1. A transparent container filled with water.
+2. A laser beam that is reflected from the water-air boundary.
+3. A photodetector that measures the intensity of the reflected light.
+4. The necessary electronics for data acquisition and decision making.</span><a class="headerlink" href="#id1" title="Permalink to this image">¶</a></p>
+</div>
+</div>
+<div class="section" id="why-should-this-work">
+<h2><strong>Why should this work</strong><a class="headerlink" href="#why-should-this-work" title="Permalink to this headline">¶</a></h2>
+<p>Vibrations of the container produce surface waves in the liquid of a capillary-gravity nature that satisfy the following dispersion relation:</p>
+<div class="math notranslate nohighlight" id="equation-eqdispersgc">
+<span class="eqno">(1)<a class="headerlink" href="#equation-eqdispersgc" title="Permalink to this equation">¶</a></span>\[\omega^2 = (g\, k + \frac{\sigma}{\rho}\,k^3)\,\tanh(k\,h).\]</div>
+<p>Here <span class="math notranslate nohighlight">\(\omega\)</span> is the angular frequency, <span class="math notranslate nohighlight">\(k\)</span> is the wave number, <span class="math notranslate nohighlight">\(g\)</span> is the gravitational acceleration, <span class="math notranslate nohighlight">\(h\)</span> is the depth of the liquid in the container, <span class="math notranslate nohighlight">\(\sigma\)</span> is the liquid surface tension and <span class="math notranslate nohighlight">\(\rho\)</span> is the liquid mass density. Eq.:ref:<cite>eqDispersGC</cite> assumes a liquid-air interface. For the water-air interface <span class="math notranslate nohighlight">\(\sigma=7.4\,{\rm mN/m}\)</span> and <span class="math notranslate nohighlight">\(\rho=10^3\,{\rm kg/m^3}\)</span> we find the critical <span class="math notranslate nohighlight">\(k_c=\sqrt{g\,\rho/\sigma}=1.15\times 10^3\,{\rm m^{-1}}\)</span> for which we switch between capillary and gravitational waves regimes. Therefore, for wavelengths <span class="math notranslate nohighlight">\(\lambda\ll 5\,{\rm mm}\)</span> the waves are in capillary regime, whereas, for larger wavelengths it switches to a gravity regime.</p>
+<p>Free wave equation <span class="math notranslate nohighlight">\(\square \Psi = 0\)</span> is solved by variable separation method <span class="math notranslate nohighlight">\(\Psi(t,\vec{r})=T(t)\times R(\vec{r})\)</span>, where, <span class="math notranslate nohighlight">\(T(t)\)</span> and <span class="math notranslate nohighlight">\(R(\vec{r})\)</span> are the functional parts that depend only on the time or spatial coordinates, respectively. Consider a cylindrical container of radius <span class="math notranslate nohighlight">\(R\)</span> with its axis aligned vertically – i.e. it has radial symmetry in the horizontal plane. Vibrational forces <span class="math notranslate nohighlight">\(f(t)\)</span> that acts on the container produce waves that satisfy <span class="math notranslate nohighlight">\(\square \Psi = f(t)\)</span>. At a fixed spatial point on the liquid-air surface (e.g. the center of the free surface <span class="math notranslate nohighlight">\(\vec{r}=0\)</span>), the time dependence of the solution is a function of the <span class="math notranslate nohighlight">\(\Psi(t,0) =\Psi_{\rm free}(t,0) +  \int f(t)\, dt\)</span>, i.e. it depends on the speed by witch the container shakes.</p>
+</div>
+<div class="section" id="electronics">
+<h2><strong>Electronics</strong><a class="headerlink" href="#electronics" title="Permalink to this headline">¶</a></h2>
+<p>The sensor has two separate electrical circuits. The first circuit energizes a low power laser (with <span class="math notranslate nohighlight">\(P\leq 5\,{\rm mW}\)</span>). The second circuit is the data acquisition system that includes a photodetector, a microcontroller and the necessary electrical hardware to connect them, as well as, all the necessary software for the data pipeline, data analysis and decision making.</p>
+<div class="figure align-center" id="id2">
+<span id="schematics"></span><a class="reference internal image-reference" href="_images/Earthquake_Schematics.png"><img alt="Sensor geometry" src="_images/Earthquake_Schematics.png" style="width: 70%;" /></a>
+<p class="caption"><span class="caption-number">Fig. 2 </span><span class="caption-text">. Schematic connection of the electrical components of the earthquake sensor. The <em>power</em> module is a battery, the <em>microcontroller</em> (<span class="math notranslate nohighlight">\(\mu\)</span> controller) such as a low cost arduino and ESP32, the <em>photodetector</em> can be a photodiode or photoresistor and other electrical components to connect to the microcontroller. The <em>laser</em> is a low power photodiode laser. The <em>water container</em> is shown in <a class="reference internal" href="#sensor"><span class="std std-numref">Fig. 1</span></a>.</span><a class="headerlink" href="#id2" title="Permalink to this image">¶</a></p>
+</div>
+<p><a class="reference internal" href="#schematics"><span class="std std-numref">Fig. 2</span></a></p>
+</div>
+<div class="section" id="sensitivity">
+<h2><strong>Sensitivity</strong><a class="headerlink" href="#sensitivity" title="Permalink to this headline">¶</a></h2>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="#">Table of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#"><strong>Earthquake Sensor</strong></a><ul>
+<li><a class="reference internal" href="#abstract"><strong>Abstract</strong></a></li>
+<li><a class="reference internal" href="#introduction"><strong>Introduction</strong></a></li>
+<li><a class="reference internal" href="#hardware"><strong>Hardware</strong></a></li>
+<li><a class="reference internal" href="#why-should-this-work"><strong>Why should this work</strong></a></li>
+<li><a class="reference internal" href="#electronics"><strong>Electronics</strong></a></li>
+<li><a class="reference internal" href="#sensitivity"><strong>Sensitivity</strong></a></li>
+</ul>
+</li>
+</ul>
+
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="_sources/index.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             >index</a></li>
+        <li class="nav-item nav-item-0"><a href="#">Earthquake Sensor  documentation</a> &#187;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2020, Ervin Kafexhiu.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 3.0.3.
+    </div>
+  </body>
+</html>
